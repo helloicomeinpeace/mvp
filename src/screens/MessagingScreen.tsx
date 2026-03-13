@@ -9,116 +9,135 @@ export const MessagingScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
-        {/* Navigation Bar */}
-        <View className="bg-white/80 dark:bg-background-dark/80 px-4 py-3 flex-row items-center justify-between border-b border-slate-200 dark:border-slate-800">
+        {/* Chat Header */}
+        <View className="flex-row items-center justify-between border-b border-primary/10 bg-background-light/50 dark:bg-background-dark/80 px-4 py-3">
           <View className="flex-row items-center gap-3">
-            <TouchableOpacity onPress={() => navigation.goBack()} className="size-8 items-center justify-center rounded-full">
+            <TouchableOpacity onPress={() => navigation.goBack()} className="p-2">
               <Icon name="arrow-back-ios-new" size={20} color="#102216" className="dark:text-slate-100" />
             </TouchableOpacity>
             <View className="relative">
-              <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBb-Nq7UUrx7_lWNVIOfxpxtTloc6okz-e1nFvCWWFXOEHeQgI5k0-RNRBnUtnOve3pNYDD_8cmZrG-kMTr_W6LAUWqdOtxd4Li8bEEruzL4g5WIEwSA8_A8yL2MS4fOmqwmQWSpOnPkp4zZYXfeCC8lMZy-VvvvFlgYBVC2sFtLWWS8Mu6SumB6GSr0ICG5RSlOSwWxM7sMcnYMElcGN3pSuPaSK_gx7or_qA171k75ZxNjA5b7eiPfZ9iqy19PHy21r8ThOWHiIll' }} className="size-10 rounded-full border border-slate-200 dark:border-slate-700" />
-              <View className="absolute bottom-0 right-0 size-3 rounded-full bg-primary border-2 border-white dark:border-background-dark" />
+              <Image
+                source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3xKPkZHKdgKLsTCdCSPjpI4YzEbVNr1RLdJxhUe41zhdlG_QFB7nbUv4TmkX1ZUfzZ1J-pOAmVKvloq30OpzCxJ9i3KswfviLhHVm9WoO-A7s8mg8TFRoqervZTVZklsdlm2E5lT8x26MRWsTqLlF7i7zxq5cMZ3z2Or3kPzmafHHldw8SY_vS5bCJ5PYOIiH2jmtWbeZHit2sdWNbDlLdql6joIfCUey3LHTv87UuGnuZZeCLu7uVs2bcy-ER6H-98IoPBEle12y' }}
+                className="h-10 w-10 rounded-full"
+              />
+              <View className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white dark:border-background-dark bg-primary" />
             </View>
             <View>
-              <Text className="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight font-display">John Doe</Text>
-              <Text className="text-slate-500 dark:text-slate-400 text-xs font-medium font-display">Online</Text>
+              <Text className="text-sm font-bold text-slate-900 dark:text-white font-display">Alex Johnson</Text>
+              <Text className="text-[10px] text-primary font-display">Online • Active now</Text>
             </View>
           </View>
           <View className="flex-row items-center gap-1">
-            <TouchableOpacity className="size-10 items-center justify-center rounded-full"><Icon name="call" size={20} color="#334155" /></TouchableOpacity>
-            <TouchableOpacity className="size-10 items-center justify-center rounded-full"><Icon name="more-vert" size={20} color="#334155" /></TouchableOpacity>
+            <TouchableOpacity className="p-2 hover:bg-primary/10 rounded-full">
+              <Icon name="call" size={20} color="#13ec5b" />
+            </TouchableOpacity>
+            <TouchableOpacity className="p-2 hover:bg-primary/10 rounded-full">
+              <Icon name="videocam" size={20} color="#13ec5b" />
+            </TouchableOpacity>
+            <TouchableOpacity className="p-2 hover:bg-primary/10 rounded-full">
+              <Icon name="info" size={20} color="#94a3b8" />
+            </TouchableOpacity>
           </View>
         </View>
 
-        {/* Active Job Header */}
-        <View className="flex-row items-center gap-3 px-4 py-2 bg-primary/10 dark:bg-primary/5 border-t border-primary/20">
-          <View className="bg-primary/20 dark:bg-primary/30 rounded-lg p-2"><Icon name="directions-car" size={20} color="#13ec5b" /></View>
-          <View className="flex-1">
-            <Text className="text-slate-800 dark:text-slate-200 text-sm font-semibold font-display">Personal Driver for School Run</Text>
-            <Text className="text-primary text-xs font-medium font-display">Application Active • 4.9 ★ Rating</Text>
-          </View>
-          <TouchableOpacity className="bg-primary px-3 py-1.5 rounded-lg"><Text className="text-slate-900 text-xs font-bold font-display">Hire Now</Text></TouchableOpacity>
-        </View>
-
-        {/* Chat Area */}
+        {/* Messages Area */}
         <ScrollView className="flex-1 p-4" showsVerticalScrollIndicator={false}>
-          <View className="items-center mb-6">
-            <View className="bg-slate-200/50 dark:bg-slate-800/50 px-3 py-1 rounded-full">
-              <Text className="text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest font-display">Today</Text>
+          {/* Date Separator */}
+          <View className="flex-row items-center justify-center mb-6">
+            <View className="h-px flex-1 bg-primary/10" />
+            <Text className="mx-4 text-[10px] font-medium uppercase tracking-widest text-slate-400 font-display">Today</Text>
+            <View className="h-px flex-1 bg-primary/10" />
+          </View>
+
+          {/* Received Message */}
+          <View className="flex-row items-start gap-3 mb-6">
+            <Image
+              source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBm4BsPhDV14JYiCECWBMsz3k85IMxLnFvj-FpA3enBGpiF6EKYNiieaD27uwVMJFqN6wD5kRmKOmF_30bJlSUA7ePBFNPHb4lL1JVm2941YHjXxclwbIm2jY3CXZcEZWtlm2-Bgl5zKkIeAHiN8n7tLj2owEK3684j1qklPJWxkVMi0N33vgkhk7VCMJhihbYFgP0pIGYW7H5bdJDuKtD_z8fpvS-XGQvCB-SUDKOsttN4TTTaEbQwIuvpdrPW-KTnmaGwjTk-s60Z' }}
+              className="h-8 w-8 rounded-full"
+            />
+            <View className="max-w-[75%] gap-1">
+              <View className="rounded-2xl rounded-tl-none bg-primary/10 p-3">
+                <Text className="text-sm text-slate-800 dark:text-slate-200 font-display">Hey! I finished the design review for the new dashboard.</Text>
+              </View>
+              <Text className="text-[10px] text-slate-400 font-display">10:15 AM</Text>
             </View>
           </View>
 
-          {/* Received */}
-          <View className="flex-row items-end gap-2 mb-6 max-w-[85%]">
-            <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9aGDeq2kXSCzFmK493eLUU9CcRbj5ZRzaRpBzLVYeJ-UQg8wROiLhY8Q2A98IM942_zzXttoycObxzGTjBQliXSEOg6RBX-x1BSSwDDfgCkRRul6gcligwI4uUz0UAZzhdcJVPzEoJ24p2mgq0qNmsBhOyNslkjvGT8QN7NGstwpTqfWs9WzdELHAxU9dra6VoMdd418TLYbCsoYFmNu8EbM7I-z5t-twEygIuPxYxOe1dsgOlU69MvUh89zZAkVbgm2FeS8_sYm2' }} className="size-8 rounded-full mb-4" />
-            <View className="bg-white dark:bg-slate-800 p-3.5 rounded-2xl rounded-bl-none shadow-sm border border-slate-100 dark:border-slate-700">
-              <Text className="text-slate-800 dark:text-slate-100 text-sm font-display">Hello! I saw your request for a driver. I have 10 years of experience and a clean driving record.</Text>
-              <Text className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-display">09:41 AM</Text>
-            </View>
-          </View>
-
-          {/* Sent */}
-          <View className="flex-row items-end justify-end mb-6">
-            <View className="bg-primary p-3.5 rounded-2xl rounded-br-none shadow-sm max-w-[85%]">
-              <Text className="text-slate-900 text-sm font-medium font-display">Hi John, thanks for reaching out. Can you send over your license and your latest background check certificate?</Text>
-              <View className="flex-row items-center gap-1 justify-end mt-1">
-                <Text className="text-[10px] text-slate-900/60 font-display">09:43 AM</Text>
-                <Icon name="done-all" size={14} color="#102216" />
+          {/* Sent Message */}
+          <View className="flex-row items-start justify-end gap-3 mb-6">
+            <View className="max-w-[75%] items-end gap-1">
+              <View className="rounded-2xl rounded-tr-none bg-primary px-4 py-2">
+                <Text className="text-sm font-medium text-slate-900 font-display">Awesome! Does it include the updated dark mode palette?</Text>
+              </View>
+              <View className="flex-row items-center gap-1">
+                <Text className="text-[10px] text-slate-400 font-display">10:17 AM</Text>
+                <Icon name="check-circle" size={12} color="#13ec5b" />
               </View>
             </View>
           </View>
 
-          {/* Documents */}
-          <View className="flex-row items-end gap-2 mb-6 max-w-[85%]">
-            <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAbKBO_3_eokAWWvdLweOv-44U0oHM6kpsnzT7s9TJ4jazwwWKyGePgwYafJr0nKK7sgAoOBKwveomN_vRBTLfSXOaHkUHexkrlTXwlLcH38lvdTYSQ2xddS_tEvl-RRsOKQ792dE29WjSn0LHXn8Z8AYxJzOFdhcIsqEJR5xoDQN5MqYbYQfPaaTotgk7uuFYRxYrW1RyEeDtDFdHidrGFf6YnA-FAP48uzU3ochbyp_fyYQujxNJgeen0TDz1upOXJ2E_PWVsXke1' }} className="size-8 rounded-full mb-4" />
-            <View className="gap-2">
-              <View className="bg-white dark:bg-slate-800 p-3.5 rounded-2xl rounded-bl-none shadow-sm border border-slate-100 dark:border-slate-700">
-                <Text className="text-slate-800 dark:text-slate-100 text-sm font-display">Sure thing, here are the documents you requested.</Text>
+          {/* Received Message with Attachment */}
+          <View className="flex-row items-start gap-3 mb-6">
+            <Image
+              source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBP0qAEAHi5D6aLKkChunJkWRYKxQFfz5n6_C8Q-r6Z3ZtivTtmMv2mf9YqYUNUJmLH6OUkBM7oFqqAsMLfVdjNqa3L1qW2ZmjbtfXTxL3lQgY45-7mLoiM3Nj_9jeEnLSVJ4A1N_sFyUYKrKMJ1Y1CDsp63OmJuzjbYma4ih8xc09aWt1eTFL39oo2K1gyTeDc_ihBpMdnIKHxhCi5mGxJYwbAihPCK-UWb-k5iPzdFeL_FIRcl0w5t5VYCcLXLjtXjrb1k7Hw4qbP' }}
+              className="h-8 w-8 rounded-full"
+            />
+            <View className="max-w-[75%] gap-2">
+              <View className="rounded-2xl rounded-tl-none bg-primary/10 p-3">
+                <Text className="text-sm text-slate-800 dark:text-slate-200 font-display">Yes, it's all in there. Can you send the files?</Text>
               </View>
-              {/* Document Cards */}
-              <TouchableOpacity className="flex-row items-center gap-3 bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                <View className="size-10 rounded-lg bg-red-100 dark:bg-red-900/30 items-center justify-center"><Icon name="description" size={24} color="#ef4444" /></View>
-                <View className="flex-1">
-                  <Text className="text-xs font-bold text-slate-900 dark:text-slate-100 font-display">Drivers_License_John.pdf</Text>
-                  <Text className="text-[10px] text-slate-500 font-display">1.2 MB • PDF</Text>
+              {/* File Attachment Card */}
+              <View className="flex-row items-center gap-3 rounded-xl border border-primary/20 bg-white dark:bg-black/20 p-3 shadow-sm">
+                <View className="h-10 w-10 items-center justify-center rounded bg-primary/20">
+                  <Icon name="description" size={20} color="#13ec5b" />
                 </View>
-                <Icon name="download" size={20} color="#94a3b8" />
-              </TouchableOpacity>
+                <View className="flex-1">
+                  <Text className="text-xs font-semibold text-slate-900 dark:text-white font-display" numberOfLines={1}>Q4_Project_v2.fig</Text>
+                  <Text className="text-[10px] text-slate-400 font-display">12.4 MB • Figma Design</Text>
+                </View>
+                <TouchableOpacity className="p-1">
+                  <Icon name="download" size={20} color="#13ec5b" />
+                </TouchableOpacity>
+              </View>
+              <Text className="text-[10px] text-slate-400 font-display">10:18 AM</Text>
             </View>
           </View>
 
-          <View className="bg-white dark:bg-slate-800 border border-primary/30 rounded-2xl p-4 shadow-sm items-center gap-3 mt-4 mb-32">
-            <View className="size-12 rounded-full bg-primary/20 items-center justify-center"><Icon name="handshake" size={30} color="#13ec5b" /></View>
-            <View className="items-center">
-              <Text className="text-sm font-bold text-slate-900 dark:text-slate-100 font-display">Ready to hire John?</Text>
-              <Text className="text-xs text-slate-500 dark:text-slate-400 font-display text-center">Lock in the details with a secure marketplace contract.</Text>
-            </View>
-            <TouchableOpacity className="w-full bg-primary py-2.5 rounded-xl items-center justify-center shadow-md"><Text className="text-slate-900 font-bold text-sm font-display">Create Contract</Text></TouchableOpacity>
+          {/* Quick Action Buttons */}
+          <View className="flex-row justify-center gap-2 py-4 mb-24">
+            {['Got it!', 'Checking now', 'On it!'].map(text => (
+              <TouchableOpacity key={text} className="rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5">
+                <Text className="text-xs font-medium text-primary font-display">{text}</Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </ScrollView>
 
-        {/* Input Bar */}
-        <View className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-2 pb-8">
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} className="flex-row gap-2 px-2 py-1 mb-2">
-            {[
-              { label: 'Photos', icon: 'image' },
-              { label: 'Documents', icon: 'attach-file' },
-              { label: 'Location', icon: 'location-on' },
-              { label: 'Quick Contract', icon: 'description', active: true }
-            ].map((item) => (
-              <TouchableOpacity key={item.label} className={`flex-row items-center gap-1.5 px-3 py-1.5 rounded-full border ${item.active ? 'bg-primary/20 border-primary/30' : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700'}`}>
-                <Icon name={item.icon} size={14} color={item.active ? '#13ec5b' : '#64748b'} />
-                <Text className={`text-[11px] font-bold font-display ${item.active ? 'text-slate-800 dark:text-primary' : 'text-slate-600 dark:text-slate-400'}`}>{item.label}</Text>
+        {/* Message Input Area */}
+        <View className="border-t border-primary/10 bg-background-light/50 dark:bg-background-dark/80 p-4 pb-8">
+          <View className="flex-row items-end gap-3 rounded-2xl bg-white dark:bg-black/20 border border-primary/10 p-2 shadow-sm">
+            <View className="flex-row">
+              <TouchableOpacity className="p-2">
+                <Icon name="add-circle" size={24} color="#94a3b8" />
               </TouchableOpacity>
-            ))}
-          </ScrollView>
-          <View className="flex-row items-center gap-2 px-2">
-            <TouchableOpacity className="size-10 items-center justify-center"><Icon name="add-circle" size={24} color="#94a3b8" /></TouchableOpacity>
-            <View className="flex-1 bg-slate-100 dark:bg-slate-800 rounded-2xl px-4 py-2 min-h-[44px] flex-row items-center">
-              <TextInput className="flex-1 text-sm text-slate-800 dark:text-slate-200 font-display" placeholder="Message..." placeholderTextColor="#94a3b8" />
-              <TouchableOpacity><Icon name="mood" size={20} color="#94a3b8" /></TouchableOpacity>
+              <TouchableOpacity className="p-2">
+                <Icon name="image" size={24} color="#94a3b8" />
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity className="size-10 items-center justify-center rounded-full bg-primary shadow-sm"><Icon name="send" size={20} color="#102216" /></TouchableOpacity>
+            <TextInput
+              className="flex-1 border-none bg-transparent py-2 text-sm text-slate-900 dark:text-white font-display min-h-[40px] max-h-32"
+              placeholder="Type a message..."
+              placeholderTextColor="#94a3b8"
+              multiline
+            />
+            <View className="flex-row items-center gap-2">
+              <TouchableOpacity className="p-2">
+                <Icon name="sentiment-satisfied" size={24} color="#94a3b8" />
+              </TouchableOpacity>
+              <TouchableOpacity className="h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20">
+                <Icon name="send" size={20} color="#102216" />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </KeyboardAvoidingView>

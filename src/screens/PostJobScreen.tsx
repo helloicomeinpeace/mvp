@@ -9,130 +9,212 @@ export const PostJobScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
-      <View className="flex-row items-center p-4 justify-between border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text className="text-primary font-semibold text-base font-display">Cancel</Text>
+      {/* Header */}
+      <View className="flex-row items-center justify-between px-6 py-4 bg-white/80 dark:bg-background-dark/80 border-b border-primary/10">
+        <View className="flex-row items-center gap-3">
+          <View className="size-10 bg-primary rounded-lg items-center justify-center">
+            <Icon name="hub" size={20} color="#102216" />
+          </View>
+          <Text className="text-slate-900 dark:text-slate-100 text-xl font-bold font-display">WorkConnect</Text>
+        </View>
+        <TouchableOpacity className="size-10 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800">
+          <Icon name="notifications" size={20} color="#102216" className="dark:text-slate-100" />
         </TouchableOpacity>
-        <Text className="text-slate-900 dark:text-slate-100 text-lg font-bold tracking-tight font-display">Post a New Job</Text>
-        <View className="w-12" />
       </View>
 
-      <ScrollView className="flex-1 px-4 py-4" showsVerticalScrollIndicator={false}>
-        <View className="flex-row items-center gap-2 mb-6">
-          <View className={`h-1.5 flex-1 rounded-full ${currentStep >= 1 ? 'bg-primary' : 'bg-primary/20'}`} />
-          <View className={`h-1.5 flex-1 rounded-full ${currentStep >= 2 ? 'bg-primary' : 'bg-primary/20'}`} />
-          <View className={`h-1.5 flex-1 rounded-full ${currentStep >= 3 ? 'bg-primary' : 'bg-primary/20'}`} />
+      <ScrollView className="flex-1 px-6 py-8" showsVerticalScrollIndicator={false}>
+        <View className="mb-10">
+          <Text className="text-4xl font-black tracking-tight text-slate-900 dark:text-slate-100 mb-2 font-display">Post a New Job</Text>
+          <Text className="text-slate-600 dark:text-slate-400 font-display">Provide the details of your project to get quotes from top-rated professionals in your area.</Text>
         </View>
 
-        <Text className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-1 font-display">Tell us what you need</Text>
-        <Text className="text-slate-500 dark:text-slate-400 text-sm mb-6 font-display">Find the perfect local worker for your household.</Text>
-
-        <View className="space-y-6">
-          {/* Basic Information */}
-          <View className="mb-6">
-            <Text className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 font-display">Basic Information</Text>
-            <View className="gap-4">
-              <View className="gap-2">
-                <Text className="text-sm font-semibold text-slate-700 dark:text-slate-300 font-display">Job Title</Text>
-                <TextInput
-                  className="w-full h-12 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-display"
-                  placeholder="e.g. Need an experienced family driver"
-                  placeholderTextColor="#94a3b8"
-                />
+        {/* Step Indicators */}
+        <View className="flex-row gap-2 mb-8">
+          {[1, 2, 3, 4].map((step) => (
+            <TouchableOpacity
+              key={step}
+              onPress={() => setCurrentStep(step)}
+              className={`flex-1 h-12 rounded-lg flex-row items-center justify-center gap-2 ${currentStep === step ? 'bg-primary' : 'bg-slate-100 dark:bg-slate-800 opacity-60'}`}
+            >
+              <View className={`size-6 rounded-full items-center justify-center ${currentStep === step ? 'bg-white/50' : 'bg-slate-200 dark:bg-slate-700'}`}>
+                <Text className="text-xs font-bold font-display">{step}</Text>
               </View>
-              <View className="gap-2">
-                <Text className="text-sm font-semibold text-slate-700 dark:text-slate-300 font-display">Category</Text>
-                <TouchableOpacity className="w-full h-12 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex-row items-center justify-between">
-                  <Text className="text-slate-400 font-display">Select a service category</Text>
-                  <Icon name="unfold-more" size={20} color="#94a3b8" />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
+              {currentStep === step && <Text className="text-[10px] font-bold text-slate-900 font-display">Step {step}</Text>}
+            </TouchableOpacity>
+          ))}
+        </View>
 
-          {/* Job Details */}
-          <View className="mb-6">
-            <Text className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 font-display">Job Details</Text>
-            <View className="gap-2">
-              <Text className="text-sm font-semibold text-slate-700 dark:text-slate-300 font-display">Description</Text>
-              <TextInput
-                multiline
-                numberOfLines={4}
-                className="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-display text-start min-h-[100px]"
-                placeholder="Describe the responsibilities, schedule, and any specific requirements..."
-                placeholderTextColor="#94a3b8"
-                style={{ textAlignVertical: 'top' }}
-              />
-            </View>
-          </View>
-
-          {/* Logistics */}
-          <View className="mb-6">
-            <Text className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 font-display">Logistics</Text>
-            <View className="gap-2">
-              <Text className="text-sm font-semibold text-slate-700 dark:text-slate-300 font-display">Location</Text>
-              <View className="relative">
-                <Icon name="location-on" size={20} color="#13ec5b" className="absolute left-4 top-3" style={{ zIndex: 1 }} />
-                <TextInput
-                  className="w-full h-12 pl-12 pr-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-display"
-                  placeholder="Enter neighborhood or address"
-                  placeholderTextColor="#94a3b8"
-                />
+        {/* Form Content Area */}
+        <View className="bg-white dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm mb-32">
+          {currentStep === 1 && (
+            <View className="gap-6">
+              <View className="flex-row items-center gap-2 text-primary border-b border-primary/10 pb-4">
+                <Icon name="assignment" size={24} color="#13ec5b" />
+                <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Step 1: Job Details</Text>
               </View>
-            </View>
-            {/* Map Preview */}
-            <View className="w-full h-32 mt-4 rounded-xl bg-slate-200 dark:bg-slate-800 items-center justify-center border border-slate-200 dark:border-slate-800 overflow-hidden relative">
-              <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCDYNRH-KWYUnbQCoyDIw1ZnWPi21olMVng23wFEkmk5-e80cOKXC6yXtxWYuDONLjpPwGX6wZo46rM0pHcIbsOuVd-pPEJqL2NOnybz4NNr3ef4buN1Gp2EvGVq1lMybb8gCy4H_iXn013_9G5seFR64-TOS-3G6ymQS28viUge0rjchMkEYV8vWT6yJY2Z2RZG100vJbcQCGiVe1xttQXXcKhD4JZRhihTc3pbgAANdtxQA0BqwP-KaujQMyB90Sc1tfiYdFzgrIS' }} className="w-full h-full opacity-60" />
-              <View className="absolute inset-0 items-center justify-center">
-                <View className="w-8 h-8 bg-primary rounded-full border-2 border-white items-center justify-center shadow-lg">
-                  <Icon name="person-pin-circle" size={20} color="white" />
-                </View>
-              </View>
-            </View>
-          </View>
 
-          {/* Compensation */}
-          <View className="mt-6 mb-32">
-            <Text className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 font-display">Compensation</Text>
-            <View className="flex-row gap-4">
-              <View className="flex-1 gap-2">
-                <Text className="text-sm font-semibold text-slate-700 dark:text-slate-300 font-display">Budget / Rate</Text>
-                <View className="relative">
-                  <Text className="absolute left-4 top-3 text-slate-400 font-bold font-display" style={{ zIndex: 1 }}>$</Text>
+              <View className="gap-4">
+                <View>
+                  <Text className="text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300 font-display">Job Title</Text>
                   <TextInput
-                    keyboardType="numeric"
-                    className="w-full h-12 pl-8 pr-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-display"
-                    placeholder="0.00"
+                    className="w-full h-12 px-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-slate-800 text-slate-900 dark:text-white font-display"
+                    placeholder="e.g. Kitchen Faucet Replacement"
                     placeholderTextColor="#94a3b8"
                   />
                 </View>
-              </View>
-              <View className="flex-1 gap-2">
-                <Text className="text-sm font-semibold text-slate-700 dark:text-slate-300 font-display">Payment Unit</Text>
-                <TouchableOpacity className="w-full h-12 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex-row items-center justify-between">
-                  <Text className="text-slate-900 dark:text-slate-100 font-display">per hour</Text>
-                  <Icon name="expand-more" size={20} color="#94a3b8" />
-                </TouchableOpacity>
+
+                <View>
+                  <Text className="text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300 font-display">Category</Text>
+                  <TouchableOpacity className="h-12 px-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-slate-800 flex-row items-center justify-between">
+                    <Text className="text-slate-400 font-display">Plumbing</Text>
+                    <Icon name="expand-more" size={20} color="#64748b" />
+                  </TouchableOpacity>
+                </View>
+
+                <View>
+                  <Text className="text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300 font-display">Description</Text>
+                  <TextInput
+                    multiline
+                    numberOfLines={4}
+                    className="w-full p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-slate-800 text-slate-900 dark:text-white font-display min-h-[100px]"
+                    placeholder="Describe what needs to be done..."
+                    placeholderTextColor="#94a3b8"
+                    textAlignVertical="top"
+                  />
+                </View>
               </View>
             </View>
-            <View className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg flex-row gap-3">
-              <Icon name="info" size={18} color="#3b82f6" />
-              <Text className="text-xs text-blue-700 dark:text-blue-300 leading-relaxed flex-1 font-display">Most family drivers in your area are paid between $25-$35 per hour.</Text>
+          )}
+
+          {currentStep === 2 && (
+            <View className="gap-6">
+              <View className="flex-row items-center gap-2 text-primary border-b border-primary/10 pb-4">
+                <Icon name="location-on" size={24} color="#13ec5b" />
+                <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Step 2: Logistics</Text>
+              </View>
+
+              <View className="gap-4">
+                <View>
+                  <Text className="text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300 font-display">Location</Text>
+                  <View className="relative">
+                    <Icon name="map" size={20} color="#94a3b8" className="absolute left-3 top-3.5" style={{ zIndex: 1 }} />
+                    <TextInput
+                      className="w-full h-12 pl-11 pr-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-slate-800 text-slate-900 dark:white font-display"
+                      placeholder="Enter your full address"
+                      placeholderTextColor="#94a3b8"
+                    />
+                  </View>
+                </View>
+
+                <View className="h-48 rounded-xl bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                  <Image
+                    source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDI22EH3vPo3Yt7_qF-y-fzIbNVQnVqqibxjtZyGQJeQ0BdjGDFsJhd7sCC4ynaAUXaNpFCb8MqzGHRC8581tZ3QfNW60dQNHA9ErgFJJJpTtuFdfty71lge3nLGI938lw0QRqIahdp465meyKuumD_e-haPrjlMtsHW6btxtNGskuB3-eD7G4NR_V81TXqAy1pGArvGNlcx0Ch42QJELgm9Qx3Ix7QPHwu_uXQQKuzVMth9yanPRLQCFcFK7ELvsxrNlrv4LwgCnXp' }}
+                    className="w-full h-full"
+                    resizeMode="cover"
+                  />
+                </View>
+              </View>
+            </View>
+          )}
+
+          {currentStep === 3 && (
+            <View className="gap-6">
+              <View className="flex-row items-center gap-2 text-primary border-b border-primary/10 pb-4">
+                <Icon name="payments" size={24} color="#13ec5b" />
+                <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Step 3: Compensation</Text>
+              </View>
+
+              <View className="gap-6">
+                <View>
+                  <Text className="text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300 font-display">Budget Range</Text>
+                  <View className="flex-row items-center gap-3">
+                    <View className="relative flex-1">
+                      <Text className="absolute left-3 top-3.5 text-slate-400 font-display" style={{ zIndex: 1 }}>$</Text>
+                      <TextInput
+                        keyboardType="numeric"
+                        className="w-full h-12 pl-8 pr-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-slate-800 text-slate-900 dark:text-white font-display"
+                        placeholder="Min"
+                        placeholderTextColor="#94a3b8"
+                      />
+                    </View>
+                    <Text className="text-slate-400 font-display">to</Text>
+                    <View className="relative flex-1">
+                      <Text className="absolute left-3 top-3.5 text-slate-400 font-display" style={{ zIndex: 1 }}>$</Text>
+                      <TextInput
+                        keyboardType="numeric"
+                        className="w-full h-12 pl-8 pr-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-slate-800 text-slate-900 dark:text-white font-display"
+                        placeholder="Max"
+                        placeholderTextColor="#94a3b8"
+                      />
+                    </View>
+                  </View>
+                </View>
+
+                <View>
+                  <Text className="text-sm font-semibold mb-3 text-slate-700 dark:text-slate-300 font-display">Payment Method Preference</Text>
+                  <View className="flex-row gap-4">
+                    <TouchableOpacity className="flex-1 items-center justify-center p-4 rounded-lg border border-primary bg-primary/10">
+                      <Text className="text-sm font-bold text-slate-900 dark:text-white font-display">Flat Fee</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity className="flex-1 items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-slate-800">
+                      <Text className="text-sm font-medium text-slate-600 dark:text-slate-400 font-display">Hourly Rate</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </View>
+          )}
+
+          {currentStep === 4 && (
+            <View className="gap-6">
+              <View className="flex-row items-center gap-2 text-primary border-b border-primary/10 pb-4">
+                <Icon name="visibility" size={24} color="#13ec5b" />
+                <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Step 4: Review</Text>
+              </View>
+
+              <View className="gap-4">
+                <View className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                  <Text className="text-xs font-bold text-slate-400 uppercase mb-2 font-display">Job Summary</Text>
+                  <Text className="text-lg font-bold text-slate-900 dark:text-white font-display">Kitchen Faucet Replacement</Text>
+                  <Text className="text-sm text-slate-500 mt-1 font-display">Plumbing • Urgent</Text>
+                </View>
+
+                <View className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                  <Text className="text-xs font-bold text-slate-400 uppercase mb-2 font-display">Compensation</Text>
+                  <Text className="text-lg font-bold text-primary font-display">$150 - $200 (Flat Fee)</Text>
+                </View>
+
+                <View className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                  <Text className="text-xs font-bold text-slate-400 uppercase mb-2 font-display">Location</Text>
+                  <Text className="text-sm text-slate-700 dark:text-slate-300 font-display">123 West Side Ave, New York, NY</Text>
+                </View>
+              </View>
+            </View>
+          )}
+
+          {/* Action Buttons */}
+          <View className="flex-row items-center justify-between pt-10 border-t border-slate-200 dark:border-slate-800 mt-8">
+            <TouchableOpacity onPress={() => navigation.goBack()} className="px-4 py-3 rounded-xl">
+              <Text className="font-bold text-slate-500 font-display">Save as Draft</Text>
+            </TouchableOpacity>
+            <View className="flex-row gap-3">
+              <TouchableOpacity
+                onPress={() => setCurrentStep(prev => Math.max(1, prev - 1))}
+                className="px-6 py-3 rounded-xl bg-slate-100 dark:bg-slate-800"
+              >
+                <Text className="font-bold text-slate-700 dark:text-slate-300 font-display">Back</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => currentStep < 4 ? setCurrentStep(currentStep + 1) : navigation.goBack()}
+                className="px-8 py-3 rounded-xl bg-primary flex-row items-center gap-2 shadow-lg shadow-primary/20"
+              >
+                <Text className="font-bold text-slate-900 font-display">{currentStep === 4 ? 'Post & Pay' : 'Continue'}</Text>
+                <Icon name="arrow-forward" size={18} color="#102216" />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
       </ScrollView>
-
-      <View className="absolute bottom-0 left-0 right-0 p-4 bg-background-light/90 dark:bg-background-dark/90 border-t border-slate-200 dark:border-slate-800">
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          className="w-full h-14 bg-primary rounded-2xl items-center justify-center flex-row gap-2 shadow-lg shadow-primary/20"
-        >
-          <Text className="text-slate-900 font-bold text-lg font-display">Post Job Listing</Text>
-          <Icon name="send" size={20} color="#102216" />
-        </TouchableOpacity>
-        <View className="h-4" />
-      </View>
     </SafeAreaView>
   );
 };

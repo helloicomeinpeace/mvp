@@ -6,17 +6,46 @@ import { RootStackParamList } from '../navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const CATEGORIES = [
-  { id: 'cooks', name: 'Cooks', icon: 'restaurant', color: 'bg-primary/10', textColor: 'text-primary' },
-  { id: 'drivers', name: 'Drivers', icon: 'directions-car', color: 'bg-blue-500/10', textColor: 'text-blue-500' },
-  { id: 'gardeners', name: 'Gardeners', icon: 'local-florist', color: 'bg-orange-500/10', textColor: 'text-orange-500' },
-  { id: 'cleaners', name: 'Cleaners', icon: 'cleaning-services', color: 'bg-purple-500/10', textColor: 'text-purple-500' },
-  { id: 'security', name: 'Security', icon: 'security', color: 'bg-teal-500/10', textColor: 'text-teal-500' },
+  { id: 'all', name: 'All Services', icon: 'grid-view', color: 'bg-primary', textColor: 'text-slate-900', iconColor: '#102216' },
+  { id: 'cooks', name: 'Cooks', icon: 'restaurant', color: 'bg-white dark:bg-slate-800', textColor: 'text-slate-700 dark:text-slate-300', iconColor: '#13ec5b' },
+  { id: 'drivers', name: 'Drivers', icon: 'directions-car', color: 'bg-white dark:bg-slate-800', textColor: 'text-slate-700 dark:text-slate-300', iconColor: '#13ec5b' },
+  { id: 'gardeners', name: 'Gardeners', icon: 'local-florist', color: 'bg-white dark:bg-slate-800', textColor: 'text-slate-700 dark:text-slate-300', iconColor: '#13ec5b' },
+  { id: 'cleaners', name: 'Cleaners', icon: 'cleaning-services', color: 'bg-white dark:bg-slate-800', textColor: 'text-slate-700 dark:text-slate-300', iconColor: '#13ec5b' },
+  { id: 'nannies', name: 'Nannies', icon: 'child-care', color: 'bg-white dark:bg-slate-800', textColor: 'text-slate-700 dark:text-slate-300', iconColor: '#13ec5b' },
+  { id: 'plumbers', name: 'Plumbers', icon: 'plumbing', color: 'bg-white dark:bg-slate-800', textColor: 'text-slate-700 dark:text-slate-300', iconColor: '#13ec5b' },
 ];
 
 const WORKERS = [
-  { id: '1', name: 'Elena Rodriguez', title: 'Professional Cook', rating: 4.9, exp: '8 yrs', dist: '2.4 mi', rate: '$28/hr', verified: true, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbKEyFA-nMHwk44RxpZpkKkNR6hohDueXwFqw98Ncq6Y_sdnlrnUe7sjnXGvzmK8mppcUb_zxwlhuhgedRvYsFWV5z3N68OydrvhmGrxaK1S4v9FplkvZYeNvmUoO8jJ3v72CseJhg4LQyKL8rx_lNnux_UrtTx6E0A1PJPhjJrmSUGkrP-06KuRuXpcMPVsCcUdya4opL9ICmn8gxwmmjt6x1ZYNsqKI83l-SguIdudQqyYb2TojglJ9LiGRJII1TCh5__HfZJjLe' },
-  { id: '2', name: 'David Chen', title: 'Private Driver', rating: 4.8, exp: '12 yrs', dist: '1.1 mi', rate: '$35/hr', verified: false, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD5k8kP4Bsqehlcyg8YtF3F-lhFKJ7hIZ17xcfry2HvQrMWIaHavoi-Nq79EOBRUT5Qf8PfvDq5pKgsQ0zTCQr-2yCzlRkGcEDuhfw3XjwxFFps0ffBvmywx4oqnp-KjfVsF1WCnUrG7lpHWmBYJ7mDrJmol-j3WhDVN0FEvOVBYIBRzNBybVG0BUEnOYdsC0xmM23IA-pYmxl9uoXvDGdveaXT6W6ozTubVrI0HBWfg4smyGFUGdyay9L-ZVFj5YTlixn68oEu06Rf' },
-  { id: '3', name: 'Marcus Wright', title: 'Gardener & Landscaper', rating: 5.0, exp: '5 yrs', dist: '3.8 mi', rate: '$22/hr', verified: true, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCOGGyJDwOLT2Zy9-TzrL8Hh-dfrsOxDQ7n4q1N_mJy4nzuV4JRBgH9X9Gnxhtk0J-ft9tGQkQcL_S2HdAag4N8nA8EOQ2Y-ZMQcXrImUhstgatXNxYw6G4jLizB0buA_5La74hVEwjOcMyJXIdtUn2T10CoxyyU5m7PDr1p3m4cHuiCOKRbY13S8vwPg-LDH-pyxBxAvgCL2UqBKuW-OAUlfdrdmlDpxX5Mbe_ap-9ia1MzCPpg0ZMOgiM772isf9Za7k9qR6wilc8' },
+  {
+    id: '1',
+    name: 'Marco Rossi',
+    title: 'Professional Chef',
+    exp: '8 yrs exp.',
+    rating: 4.9,
+    rate: '$45',
+    tags: ['Italian', 'Pastry', 'Vegan'],
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCjqubMmTH1yeYivfTnHDIjCNrMbhYyefKixT54oyya5PFGBHIz0JxOS4wX9pLjlJ0igB7K9x2VBU7nVMENJQCcecmBvdo0XxIkuEd9YBvIceyYl9XLrSDwGXjujWTi8Com8-h6Bj5TuLzhByc3EpkzYDEkAmaCcWVSal3rj-X72nii9ZINNS6PG3ZIdGQnu7cPCi882z4DnTA4mtTZEz76w7F4CK3U61qK9LUpM6oh-ECmdTjfQthl1_UNOC1zLBdihe8Yg0yLj0U-'
+  },
+  {
+    id: '2',
+    name: 'Elena Gilbert',
+    title: 'Garden Specialist',
+    exp: '5 yrs exp.',
+    rating: 4.7,
+    rate: '$32',
+    tags: ['Landscaping', 'Pruning'],
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuApIfy565dozDNhVumEWT8iscrisk7qZJIse6bij2dw-tJNDWexmQ43a0MyTBNvjPeisjoja2t_MsHring-WAHAXPaIUcauTwdzjIKBTWKcqvprjzHHZuBe-mJk7zVtKWZz4BQ6wr22cwATl2slGb7lpRfnc4QyJZwVHHSFR85zmkwDj2NylhlvflsUjVKYk_UXCsMESKqdGkCBTP5zv3qtBbiOCHLpFUs2w4xygLd_I5CHEotsI85kLru0S6ycOg4xawQQRyTYxIJW'
+  },
+  {
+    id: '3',
+    name: 'David Chen',
+    title: 'Certified Plumber',
+    exp: '12 yrs exp.',
+    rating: 5.0,
+    rate: '$65',
+    tags: ['Emergency', 'Installation'],
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDcQF3YJh3Pydi84hHxc67fRE-3oz81G83WT4i0OpJi-clND0KzAlmFuzSDjWqQgxbdXhGeYPmBXbzfncBXI9TN_ThQeofNZ2yf_G4fKqN14kmfNhsZ9RyETagT-atH5ArKWh-qn3IKBfIGpKLzIiDEa2Pni8-aXtBt-l_RezfRqzzr7kvPurzXj2sYhCi-rvkyeAhVrBC1ajiK2SyyuLIhYY_3bz6XfuyXqRLQNVssppL3C7SDmqB4clbmkMM9x5o0fKpKELhuPWrg'
+  },
 ];
 
 export const EmployerDashboard = () => {
@@ -26,132 +55,126 @@ export const EmployerDashboard = () => {
     <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View className="flex-row items-center justify-between px-6 pt-4 pb-4">
+        <View className="flex-row items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
           <View className="flex-row items-center gap-3">
-            <View className="size-12 rounded-full bg-primary/20 items-center justify-center overflow-hidden border-2 border-primary">
-              <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuApyBNISvJ8YpV1mI4jBhLfTCX5gXlFsIDD8xv6WlYbFlJA2NKXsEdXQQ9t_OIQErEcY9uqrSlF8HvBmiIGB71Sbv8DvEopIaDXmhRSLw89CcUD9Y7UBB2Ow7BxPbPY_krzqp4w96x4lIYA7wqWld2GggS7UTRkLloUDsPDYMjTT4AtSGX5sCTelH-6v90QCiF86GKDuM0UqR63L86ND6ELB0kpC5ixQ7hhexJVuNv5GFhihlV9_d9bVudY39zV-hw03eCuDcySha4u' }} className="w-full h-full" />
+            <View className="size-10 bg-primary rounded-lg items-center justify-center">
+              <Icon name="hub" size={20} color="#102216" />
             </View>
-            <View>
-              <Text className="text-slate-500 dark:text-slate-400 text-sm font-display">Welcome back,</Text>
-              <Text className="text-xl font-bold leading-tight text-slate-900 dark:text-slate-100 font-display">Alex Johnson</Text>
+            <Text className="text-slate-900 dark:text-white text-lg font-bold tracking-tight font-display">WorkConnect</Text>
+          </View>
+          <View className="flex-row gap-3">
+            <TouchableOpacity className="size-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+              <Icon name="notifications" size={20} color="#64748b" />
+            </TouchableOpacity>
+            <TouchableOpacity className="size-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+              <Icon name="settings" size={20} color="#64748b" />
+            </TouchableOpacity>
+            <View className="size-10 rounded-full border-2 border-primary overflow-hidden">
+              <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBXYWKdI6CJZlprdvUFcQVvoXYhY-7dtknqIu9dZmucyAUqJWvxlIFDYZ5VLXOQ0ShjRDHlyokpcsGwBvMKmGbwNgdtmBSRTTBexDVAyhXnePhBw8hO4jNTGTIPOGKyCB9eSoeZeUe2zEWWDN6sKqIddp1CKOlBpE6lxEeKDRXDkqh9TnB4e_reKg2PqpVQ_Vx64ljv35T1y4Pj_jGRoEmdO4SlQWw4V-xqk2LBxniaHEQPG9m4hlNHxXWZR1uQZ1DHijSWU_0LjdqW' }} className="w-full h-full" />
             </View>
           </View>
-          <TouchableOpacity className="relative flex size-10 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
-            <Icon name="notifications" size={24} className="text-slate-700 dark:text-slate-200" />
-            <View className="absolute top-2 right-2 size-2 rounded-full bg-red-500" />
-          </TouchableOpacity>
+        </View>
+
+        {/* Welcome Section */}
+        <View className="px-6 pt-8 pb-4">
+          <Text className="text-slate-900 dark:text-white text-3xl font-extrabold tracking-tight font-display">Welcome back, Sarah</Text>
+          <Text className="text-slate-500 dark:text-slate-400 text-lg font-display">What help do you need with your home today?</Text>
         </View>
 
         {/* Search Bar */}
-        <View className="px-6 py-2">
-          <View className="relative flex-row items-center bg-white dark:bg-slate-800 rounded-xl px-4 py-3 shadow-sm">
-            <Icon name="search" size={24} color="#94a3b8" />
+        <View className="px-6 py-4">
+          <View className="flex-row items-center bg-slate-100 dark:bg-slate-800 rounded-xl px-4 py-3">
+            <Icon name="search" size={20} color="#94a3b8" />
             <TextInput
-              className="flex-1 ml-2 text-slate-900 dark:text-slate-100 font-display"
-              placeholder="Search for cooks, drivers, etc."
+              className="flex-1 ml-2 text-base text-slate-900 dark:text-slate-100 font-display"
+              placeholder="Search for any service..."
               placeholderTextColor="#94a3b8"
             />
           </View>
         </View>
 
         {/* Categories */}
-        <View className="mt-6">
-          <View className="flex-row items-center justify-between px-6 mb-4">
-            <Text className="text-lg font-bold text-slate-900 dark:text-slate-100 font-display">Quick Hire</Text>
-            <TouchableOpacity><Text className="text-sm font-semibold text-primary font-display">See all</Text></TouchableOpacity>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 24, paddingVertical: 12, gap: 12 }}>
+          {CATEGORIES.map((cat) => (
+            <TouchableOpacity
+              key={cat.id}
+              className={`flex-row h-11 items-center justify-center px-6 rounded-xl border border-slate-200 dark:border-slate-700 ${cat.color}`}
+            >
+              <Icon name={cat.icon} size={20} color={cat.iconColor} />
+              <Text className={`ml-2 text-sm font-bold font-display ${cat.textColor}`}>{cat.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        {/* Recommended Professionals */}
+        <View className="px-6 pt-6 pb-4">
+          <View className="flex-row items-center justify-between mb-4">
+            <Text className="text-slate-900 dark:text-white text-xl font-bold font-display">Recommended Professionals</Text>
+            <TouchableOpacity><Text className="text-primary text-sm font-bold font-display">View all</Text></TouchableOpacity>
           </View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 24, gap: 16 }}>
-            {CATEGORIES.map((cat) => (
-              <TouchableOpacity key={cat.id} className="items-center gap-2 w-20">
-                <View className={`size-16 items-center justify-center rounded-2xl ${cat.color} border border-primary/20`}>
-                  <Icon name={cat.icon} size={30} className={cat.textColor} />
+
+          <View className="gap-6">
+            {WORKERS.map((worker) => (
+              <View key={worker.id} className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+                <View className="relative h-48 w-full">
+                  <Image source={{ uri: worker.img }} className="w-full h-full" resizeMode="cover" />
+                  <View className="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur rounded-lg px-2 py-1 flex-row items-center gap-1">
+                    <Icon name="star" size={14} color="#13ec5b" />
+                    <Text className="text-xs font-bold text-slate-900 dark:text-white font-display">{worker.rating}</Text>
+                  </View>
                 </View>
-                <Text className="text-xs font-bold text-slate-900 dark:text-slate-100 font-display">{cat.name}</Text>
-              </TouchableOpacity>
+                <View className="p-5">
+                  <View className="flex-row justify-between items-start mb-3">
+                    <View>
+                      <Text className="text-slate-900 dark:text-white font-bold text-lg font-display">{worker.name}</Text>
+                      <Text className="text-slate-500 text-sm font-display">{worker.title} • {worker.exp}</Text>
+                    </View>
+                    <View className="items-end">
+                      <Text className="text-primary font-extrabold text-lg font-display">{worker.rate}</Text>
+                      <Text className="text-slate-400 text-xs font-display">per hour</Text>
+                    </View>
+                  </View>
+                  <View className="flex-row flex-wrap gap-2 mb-4">
+                    {worker.tags.map(tag => (
+                      <View key={tag} className="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800">
+                        <Text className="text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 font-display">{tag}</Text>
+                      </View>
+                    ))}
+                  </View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('WorkerProfile', { workerId: worker.id })}
+                    className="w-full py-3 bg-primary/10 border border-primary/20 rounded-xl items-center justify-center"
+                  >
+                    <Text className="text-primary font-bold font-display">Book Now</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             ))}
-          </ScrollView>
+          </View>
         </View>
 
-        {/* Recommended */}
-        <View className="mt-8 mb-24">
-          <View className="flex-row items-center justify-between px-6 mb-4">
-            <Text className="text-lg font-bold text-slate-900 dark:text-slate-100 font-display">Recommended for You</Text>
-            <TouchableOpacity><Icon name="tune" size={24} color="#94a3b8" /></TouchableOpacity>
+        {/* Pro Banner */}
+        <View className="mx-6 mt-8 mb-32 p-6 rounded-2xl bg-primary/10 border border-primary/20 flex-row items-center gap-4">
+          <View className="flex-1">
+            <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Want to become a Pro?</Text>
+            <Text className="text-slate-600 dark:text-slate-400 text-sm mt-1 mb-4 font-display">Join our network of elite professionals and start earning today.</Text>
+            <TouchableOpacity className="bg-slate-900 dark:bg-primary px-6 py-2.5 rounded-xl self-start">
+              <Text className="text-white dark:text-slate-900 font-bold font-display">Get Started</Text>
+            </TouchableOpacity>
           </View>
-          <View className="gap-4 px-6">
-            {WORKERS.map((worker) => (
-              <TouchableOpacity
-                key={worker.id}
-                onPress={() => navigation.navigate('WorkerProfile', { workerId: worker.id })}
-                className="flex-row rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-100 dark:border-slate-700"
-              >
-                <View className="relative size-20 shrink-0">
-                  <Image source={{ uri: worker.img }} className="h-full w-full rounded-xl" />
-                  {worker.verified && (
-                    <View className="absolute -bottom-1 -right-1 size-6 items-center justify-center rounded-full bg-primary border-2 border-white dark:border-slate-800">
-                      <Icon name="verified" size={14} color="white" />
-                    </View>
-                  )}
-                </View>
-                <View className="flex-1 ml-4 justify-between">
-                  <View className="flex-row justify-between items-start">
-                    <View>
-                      <Text className="font-bold text-slate-900 dark:text-slate-100 font-display">{worker.name}</Text>
-                      <Text className="text-sm text-slate-500 dark:text-slate-400 font-display">{worker.title}</Text>
-                    </View>
-                    <View className="flex-row items-center gap-1">
-                      <Icon name="star" size={18} color="#13ec5b" />
-                      <Text className="text-sm font-bold text-slate-900 dark:text-slate-100 font-display">{worker.rating}</Text>
-                    </View>
-                  </View>
-                  <View className="mt-2 flex-row items-center justify-between">
-                    <View className="flex-row gap-2">
-                      <View className="flex-row items-center gap-1 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-lg">
-                        <Icon name="work" size={12} color="#64748b" />
-                        <Text className="text-[10px] text-slate-500 dark:text-slate-400 font-display">{worker.exp} exp</Text>
-                      </View>
-                      <View className="flex-row items-center gap-1 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-lg">
-                        <Icon name="location-on" size={12} color="#64748b" />
-                        <Text className="text-[10px] text-slate-500 dark:text-slate-400 font-display">{worker.dist}</Text>
-                      </View>
-                    </View>
-                    <Text className="text-sm font-bold text-primary font-display">{worker.rate}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            ))}
+          <View className="w-1/3 aspect-square rounded-xl overflow-hidden">
+            <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA5b6QLZj8siSKhmVZn9DVqgmiyGSAJuZCpF4xFyIZ7bi14houeys_Pj7b40lmKc0AwUvNwQiApV76T-bJ2Njvs3BQms8Mba6Lf4-0683jFpsnjRdzIACPQvHjRbGD3B33B1bps5XGJJf3oQggJWV4whWVzNf37Kx75ALGryVJh1fW-ItI1YBfgZWdZxLhevYFSW0c6CbM--DKOVU6H3FJrugtwrptVQsSUUbcW4ysFyqgtkvp9dM_se5_7279NT97ldAB0Y76E5uPL' }} className="w-full h-full" />
           </View>
         </View>
       </ScrollView>
 
       {/* Post a Job Floating Button */}
-      <View className="absolute bottom-24 right-6">
+      <View className="absolute bottom-6 right-6">
         <TouchableOpacity
           onPress={() => navigation.navigate('PostJob')}
-          className="bg-primary px-6 py-4 rounded-full flex-row items-center gap-2 shadow-lg shadow-primary/30"
+          className="bg-primary size-14 rounded-full items-center justify-center shadow-lg shadow-primary/40"
         >
-          <Icon name="add-circle" size={24} color="#102216" />
-          <Text className="text-slate-900 font-bold font-display">Post a Job</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Navigation Placeholder */}
-      <View className="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 px-6 pb-8 pt-3 flex-row justify-between">
-        <TouchableOpacity className="items-center gap-1">
-          <Icon name="home" size={24} color="#13ec5b" />
-          <Text className="text-[10px] font-bold text-primary">Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="items-center gap-1">
-          <Icon name="chat" size={24} color="#94a3b8" />
-          <Text className="text-[10px] font-medium text-slate-400">Messages</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="items-center gap-1">
-          <Icon name="calendar-today" size={24} color="#94a3b8" />
-          <Text className="text-[10px] font-medium text-slate-400">Bookings</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="items-center gap-1">
-          <Icon name="person" size={24} color="#94a3b8" />
-          <Text className="text-[10px] font-medium text-slate-400">Profile</Text>
+          <Icon name="add" size={30} color="#102216" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
