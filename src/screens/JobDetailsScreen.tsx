@@ -12,144 +12,171 @@ export const JobDetailsScreen = () => {
   const { jobId } = route.params;
 
   return (
-    <View className="flex-1 bg-background-light dark:bg-background-dark">
-      {/* Header Image */}
-      <View className="relative h-72 w-full">
-        <Image
-          source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD6t2oTUiSPBUAK9VCW6HNITsVMXbPAVVPfeGKUd7Tx6uhs6ccB2Qvq2-5Cmzvwgyho1rMT5xp8xO4sra8DGRuMR_WV1UNzeiDG31-vkoQeghEvIZRhh-Rq2NMVWVoiGTAiXw6Z_Uy5JO4KvE8EwAFokqPw_n_dvHWYSZ81-0i-rzty7iWNBAAunPiU2yDsmIWZnqIJ-SjBYPvcAjXaZDhLTK6AOFoUS4fik4Sd7ABYzBFcSkHg9E5RRNJ6Ut-Tw6xZZtTKB6m0z0Xi' }}
-          className="w-full h-full"
-        />
-        <View className="absolute inset-0 bg-black/20" />
-        <View className="absolute top-0 left-0 right-0 flex-row items-center justify-between p-4 z-10 pt-12">
-          <TouchableOpacity onPress={() => navigation.goBack()} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30">
-            <Icon name="arrow-back-ios-new" size={20} color="white" />
-          </TouchableOpacity>
-          <View className="flex-row gap-2">
-            <TouchableOpacity className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30">
-              <Icon name="share" size={20} color="white" />
+    <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
+      {/* Header */}
+      <View className="flex-row items-center justify-between px-6 py-4 bg-white/80 dark:bg-background-dark/80 border-b border-primary/10">
+        <View className="flex-row items-center gap-3">
+          <View className="size-10 bg-primary rounded-lg items-center justify-center">
+            <Icon name="hub" size={20} color="#102216" />
+          </View>
+          <Text className="text-slate-900 dark:text-slate-100 text-xl font-bold font-display">WorkConnect</Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.goBack()} className="size-10 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800">
+          <Icon name="close" size={20} color="#102216" className="dark:text-slate-100" />
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView className="flex-1 px-6 py-8" showsVerticalScrollIndicator={false}>
+        {/* Breadcrumbs Placeholder */}
+        <View className="flex-row items-center gap-2 mb-8">
+          <Text className="text-sm text-slate-500 font-display">Home</Text>
+          <Icon name="chevron-right" size={14} color="#94a3b8" />
+          <Text className="text-sm text-slate-900 dark:text-slate-100 font-medium font-display">Job Details</Text>
+        </View>
+
+        {/* Job Header Card */}
+        <View className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/10 shadow-sm mb-8">
+          <View className="flex-row gap-6 items-start">
+            <View className="size-32 rounded-xl bg-primary/10 overflow-hidden">
+              <Image
+                source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDdQBCULTRgB38xPcp02685P9D4USFOeOy4tYfVrjA6yAWz0VQG2eZEqlQcGEx7vzwB8XexOe67r3N9qaPhN4-Im2kF2tZec6s5xAyxp7ZuZZYaCnQkOKtEI-QKkSHSDaRyIp34iJJwy3NW6d9fr8KPZXQeITWtDS5ZPYPG86fZYu6F-QmPJqrrmntE3ggq9CxsuWBANdfDbuhb_LSHdAzz6wnpMiskp5nvQUUr_gCHOpX6dT5EWeyWxrYvm5KW727pJg1LGNZg_4_j' }}
+                className="w-full h-full"
+                resizeMode="cover"
+              />
+            </View>
+            <View className="flex-1">
+              <View className="flex-row flex-wrap items-center gap-2 mb-2">
+                <View className="px-2 py-1 rounded bg-primary/20">
+                  <Text className="text-primary text-[10px] font-bold uppercase tracking-wider font-display">Landscaping</Text>
+                </View>
+                <View className="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800">
+                  <Text className="text-slate-500 text-[10px] font-bold uppercase tracking-wider font-display">Part-Time</Text>
+                </View>
+              </View>
+              <Text className="text-2xl font-extrabold text-slate-900 dark:text-white leading-tight font-display">Senior Garden Maintenance & Landscaping</Text>
+            </View>
+          </View>
+
+          <View className="flex-row flex-wrap gap-4 mt-6">
+            <View className="flex-row items-center gap-1">
+              <Icon name="person" size={18} color="#13ec5b" />
+              <Text className="text-sm text-slate-500 font-display">Sarah Jenkins</Text>
+            </View>
+            <View className="flex-row items-center gap-1">
+              <Icon name="location-on" size={18} color="#13ec5b" />
+              <Text className="text-sm text-slate-500 font-display">Riverside, CA</Text>
+            </View>
+            <View className="flex-row items-center gap-1">
+              <Icon name="payments" size={18} color="#13ec5b" />
+              <Text className="text-sm text-slate-500 font-display">$25 - $35 / hr</Text>
+            </View>
+          </View>
+
+          <View className="flex-row gap-4 mt-8">
+            <TouchableOpacity className="flex-1 bg-primary py-3 rounded-xl items-center justify-center flex-row gap-2">
+              <Icon name="send" size={20} color="#102216" />
+              <Text className="text-slate-900 font-bold font-display">Apply Now</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30">
-              <Icon name="favorite" size={20} color="white" />
+            <TouchableOpacity className="flex-1 bg-slate-100 dark:bg-slate-800 py-3 rounded-xl items-center justify-center flex-row gap-2">
+              <Icon name="chat" size={20} color="#64748b" />
+              <Text className="text-slate-900 dark:text-white font-bold font-display">Message</Text>
             </TouchableOpacity>
           </View>
         </View>
-      </View>
 
-      {/* Content */}
-      <View className="relative -mt-8 flex-1 rounded-t-3xl bg-background-light dark:bg-background-dark p-6">
-        <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-          <View className="mb-6">
-            <View className="flex-row items-center gap-2 mb-2">
-              <View className="inline-flex flex-row items-center gap-1 rounded-full bg-primary/20 px-2.5 py-0.5">
-                <Icon name="verified" size={12} color="#13ec5b" />
-                <Text className="text-[10px] font-bold text-slate-900 dark:text-primary font-display">VERIFIED HOUSEHOLD</Text>
-              </View>
-              <Text className="text-xs text-slate-500 font-medium tracking-wide font-display">• MANHATTAN, NY</Text>
-            </View>
-            <Text className="text-2xl font-extrabold leading-tight text-slate-900 dark:text-slate-50 font-display">Private Chef for Weekend Event</Text>
-            <Text className="mt-1 text-sm text-slate-500 font-display">Posted 2 hours ago • Job ID: #58291</Text>
-          </View>
-
-          {/* Stats Grid */}
-          <View className="flex-row flex-wrap gap-3 mb-8">
-            <View className="flex-1 min-w-[45%] bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/10 items-start justify-center">
-              <Icon name="payments" size={20} color="#13ec5b" className="mb-1" />
-              <Text className="text-xs font-medium text-slate-500 uppercase tracking-tight mb-1 font-display">Pay Rate</Text>
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">$45 - $60<Text className="text-sm font-normal">/hr</Text></Text>
-            </View>
-            <View className="flex-1 min-w-[45%] bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/10 items-start justify-center">
-              <Icon name="event" size={20} color="#13ec5b" className="mb-1" />
-              <Text className="text-xs font-medium text-slate-500 uppercase tracking-tight mb-1 font-display">Date</Text>
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">Oct 12-13</Text>
-            </View>
-            <View className="flex-1 min-w-[45%] bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/10 items-start justify-center">
-              <Icon name="schedule" size={20} color="#13ec5b" className="mb-1" />
-              <Text className="text-xs font-medium text-slate-500 uppercase tracking-tight mb-1 font-display">Duration</Text>
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">12 Hours</Text>
-            </View>
-            <View className="flex-1 min-w-[45%] bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/10 items-start justify-center">
-              <Icon name="near-me" size={20} color="#13ec5b" className="mb-1" />
-              <Text className="text-xs font-medium text-slate-500 uppercase tracking-tight mb-1 font-display">Distance</Text>
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">2.4 miles</Text>
-            </View>
-          </View>
-
+        {/* Content Section */}
+        <View className="gap-10 mb-32">
           {/* Description */}
-          <View className="mb-8">
-            <View className="flex-row items-center gap-2 mb-3">
-              <Icon name="subject" size={20} color="#94a3b8" />
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">Job Description</Text>
+          <View>
+            <View className="flex-row items-center gap-2 mb-4">
+              <Icon name="description" size={20} color="#13ec5b" />
+              <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Job Description</Text>
             </View>
             <Text className="text-slate-600 dark:text-slate-300 leading-relaxed font-display">
-              Seeking a professional private chef to manage a high-end weekend birthday event for 12 guests. You will be responsible for creating a 5-course seasonal menu, sourcing fresh local ingredients, and managing kitchen clean-up. The host provides a fully equipped gourmet kitchen with sub-zero appliances.
+              We are seeking an experienced gardener and landscaper to help maintain our 2-acre residential estate in Riverside. The ideal candidate will have a deep passion for horticulture and eye for detail.
+              {"\n\n"}
+              Your responsibilities will include seasonal planting, precision pruning of ornamental shrubs, maintenance of the irrigation system, and managing the health of our organic vegetable garden.
             </Text>
           </View>
 
-          {/* Required Skills */}
-          <View className="mb-8">
-            <View className="flex-row items-center gap-2 mb-3">
-              <Icon name="psychology" size={20} color="#94a3b8" />
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">Required Skills</Text>
+          {/* Requirements */}
+          <View>
+            <View className="flex-row items-center gap-2 mb-4">
+              <Icon name="task-alt" size={20} color="#13ec5b" />
+              <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Requirements</Text>
             </View>
-            <View className="flex-row flex-wrap gap-2">
-              {['Culinary Arts', 'Menu Planning', 'Food Safety', 'Plating'].map((skill) => (
-                <View key={skill} className="px-3 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700">
-                  <Text className="text-sm font-semibold text-slate-700 dark:text-slate-200 font-display">{skill}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
-
-          {/* Requirements List */}
-          <View className="mb-8">
-            <View className="flex-row items-center gap-2 mb-3">
-              <Icon name="assignment-turned-in" size={20} color="#94a3b8" />
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">Requirements</Text>
-            </View>
-            <View className="gap-2">
+            <View className="gap-3">
               {[
-                'Must have professional knife set',
-                'Chef whites/uniform required',
-                'Proof of vaccination or negative test',
-              ].map((req) => (
-                <View key={req} className="flex-row items-start gap-2">
-                  <Icon name="check-circle" size={16} color="#13ec5b" className="mt-0.5" />
-                  <Text className="text-sm text-slate-600 dark:text-slate-300 font-display">{req}</Text>
+                '5+ years professional landscaping experience',
+                'Expert knowledge of native CA plants',
+                'Ability to lift 50lbs and work outdoors',
+                'Reliable transportation with tool space'
+              ].map(req => (
+                <View key={req} className="flex-row items-center gap-3 bg-white dark:bg-slate-900 p-4 rounded-xl border border-primary/5">
+                  <Icon name="check-circle" size={20} color="#13ec5b" />
+                  <Text className="text-sm text-slate-700 dark:text-slate-300 font-display flex-1">{req}</Text>
                 </View>
               ))}
             </View>
           </View>
 
-          {/* Map Preview */}
-          <View className="mt-8 mb-24">
-            <View className="flex-row items-center justify-between mb-3">
-              <View className="flex-row items-center gap-2">
-                <Icon name="location-on" size={20} color="#94a3b8" />
-                <Text className="text-lg font-bold text-slate-900 dark:text-slate-50 font-display">Job Location</Text>
-              </View>
-              <Text className="text-xs font-bold text-primary font-display">VIEW MAP</Text>
+          {/* Schedule */}
+          <View>
+            <View className="flex-row items-center gap-2 mb-4">
+              <Icon name="calendar-month" size={20} color="#13ec5b" />
+              <Text className="text-xl font-bold text-slate-900 dark:text-white font-display">Schedule</Text>
             </View>
-            <View className="h-32 w-full rounded-xl bg-slate-200 dark:bg-slate-700 overflow-hidden relative">
-              <Image source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBoWoNt2oNyNYIIcwy5xWeRwkjor-hbV-2AU9Ed27AHx53fSYu3yj7hIrMyqrseuA8VILBb0nFgkQt5Exb2_o9tZdkuIv7EOYzzGYbLe7V1gqmpI2109V_LVNjAqPU3ilNu7w4RovKACWMtPCBOlnEVYWPCH0Y8swS1xINtjYLSq7XhghqSLHNzhEsLb4Fh8HsTs3zJZLPP-8U44U3Dk2HLY-4QS8G4NsBnAVrxFx37-uHzf-VgVJaB1b54tSbFLwCZDKA-XP4xugSM' }} className="w-full h-full opacity-60" />
-              <View className="absolute inset-0 items-center justify-center">
-                <View className="h-10 w-10 bg-primary/20 rounded-full items-center justify-center">
-                  <View className="h-4 w-4 bg-primary rounded-full shadow-lg" />
+            <View className="bg-primary/5 border border-primary/10 rounded-2xl p-6 flex-row justify-between">
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
+                <View key={day} className="items-center">
+                  <Text className="text-[10px] font-bold text-slate-400 mb-2 uppercase font-display">{day}</Text>
+                  <View className={`size-10 rounded-full items-center justify-center ${['Mon', 'Wed', 'Fri'].includes(day) ? 'bg-primary' : 'border border-dashed border-slate-400 opacity-30'}`}>
+                    <Text className="text-[10px] font-bold text-slate-900 font-display">{['Mon', 'Wed', 'Fri'].includes(day) ? '8-12' : '-'}</Text>
+                  </View>
                 </View>
-              </View>
+              ))}
             </View>
           </View>
-        </ScrollView>
-      </View>
 
-      {/* Footer Bar */}
-      <View className="absolute bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 p-4 pb-8 flex-row items-center gap-4 border-t border-slate-200 dark:border-slate-800">
-        <TouchableOpacity className="size-12 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700">
-          <Icon name="chat-bubble" size={24} color="#64748b" />
+          {/* About Homeowner */}
+          <View className="bg-white dark:bg-slate-900 rounded-2xl border border-primary/10 p-6 shadow-sm">
+            <Text className="font-bold text-slate-900 dark:text-white mb-4 font-display">About the Homeowner</Text>
+            <View className="flex-row items-center gap-4 mb-4">
+              <Image
+                source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDvfQV4FB3M17eboTut5RonjxlmiYaqdVtFAni-RRPKfKqlr_u65waa0rIBq83nt2VXBjzPoRsKVnAnWOjHMWpzR4BBka__2Ui6t6kZJLcC02npue9odhP8xDby7Ysvsn5D24owla8wgcBLEFXORvRBfr86ey6dR7kuUsVCfffb3__dqVHcZyu0LRHk9jhrpEYQT4q4V7XMIQyHK74BxJR4VVLw00iIaXi5DYIFSc2IVElRc3VNVVrc5CMi6R0Ra0KNC1I6HChH1p_Z' }}
+                className="size-12 rounded-full"
+              />
+              <View>
+                <Text className="font-bold text-slate-900 dark:text-white font-display">Sarah Jenkins</Text>
+                <Text className="text-xs text-slate-500 font-display">Member since 2021</Text>
+              </View>
+            </View>
+            <View className="gap-3">
+              <View className="flex-row items-center gap-2">
+                <Icon name="star" size={18} color="#13ec5b" />
+                <Text className="text-sm text-slate-700 dark:text-slate-300 font-display">4.9 (12 reviews)</Text>
+              </View>
+              <View className="flex-row items-center gap-2">
+                <Icon name="verified-user" size={18} color="#13ec5b" />
+                <Text className="text-sm text-slate-700 dark:text-slate-300 font-display">ID Verified</Text>
+              </View>
+            </View>
+            <TouchableOpacity className="mt-6">
+              <Text className="text-primary text-sm font-bold text-center font-display">View Profile</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* Sticky Mobile Action Bar */}
+      <View className="absolute bottom-0 left-0 right-0 bg-white dark:bg-slate-900 p-4 pb-8 border-t border-primary/10 flex-row gap-4">
+        <TouchableOpacity className="flex-1 bg-primary py-4 rounded-xl items-center justify-center">
+          <Text className="text-slate-900 font-bold text-lg font-display">Apply Now</Text>
         </TouchableOpacity>
-        <TouchableOpacity className="flex-1 h-14 bg-primary rounded-xl items-center justify-center shadow-lg shadow-primary/20">
-          <Text className="text-slate-900 font-extrabold text-lg font-display">Apply Now</Text>
+        <TouchableOpacity className="size-14 items-center justify-center border border-primary/20 rounded-xl">
+          <Icon name="chat" size={24} color="#13ec5b" />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };

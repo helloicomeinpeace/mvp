@@ -4,8 +4,42 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const BOOKINGS = [
-  { id: '1', name: 'Marcus Thorne', title: 'Master Gardener', date: 'Tomorrow, Oct 24', time: '10:00 AM - 1:00 PM', status: 'Confirmed', icon: 'local-florist', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBIXA1VmivJ6-rbimArK0GuGXYIy0rWBz5UcSm2QmehKjn5f4GR8UYZ10lq3gqb6eUqaagmNFc3WmSSW7AfajSpAq2Pm9I2uqLJXaRmL52ElC0FCSmjmSS9lSH1eY37abTCWaQO9l25Ttv4qBqpNkRi_dTIiggMU7VPEc2w-zY_a8d1kBsdAZsppTf4fv6LHcfB_VM2IMkXqZBCWTUHzSTv8zgtQVvE1ULBmFKRNfzYJz_pTnedXiTjXBU4sDlXkN5OBvJWoLptKoCV' },
-  { id: '2', name: 'Elena Rodriguez', title: 'Private Chef', date: 'Saturday, Oct 26', time: '6:00 PM - 9:00 PM', status: 'Pending', icon: 'restaurant', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDMkusJHf68CBZZsQWNXggun_Yt1B3Vf6mqVaAlwoue-f0HxH6LITbqzp6Eg6egdck8Cg6u6nSV7mOMmpVGPriQf0SnJ_E1J_2T5-HaajBI_ZjCd3hVSTPMLTPRcC280XpFzercSB-VFGFs9CVHPYTdLPE9Wpit9Z7xbRLVpGaOGDkP8PQvsIbKTt2OvLPmTWq6Pmkhve_5s_AAB1GLBxojp4MwmsWpZfmxXUNhPj6FKxIF8krChMAJLHkINoY4teea08_x-3JI4_b2' },
+  {
+    id: '1',
+    title: 'Project Strategy Deep-dive',
+    date: '24',
+    month: 'Oct',
+    day: 'Thu',
+    time: '10:00 AM - 11:30 AM (1.5h)',
+    status: 'Confirmed',
+    person: 'Sarah Jenkins',
+    location: 'Google Meet',
+    type: 'video-call',
+  },
+  {
+    id: '2',
+    title: 'Brand Identity Review',
+    date: '26',
+    month: 'Oct',
+    day: 'Sat',
+    time: '02:00 PM - 03:00 PM (1h)',
+    status: 'Pending',
+    person: 'Creative Hub',
+    location: 'Studio 4B',
+    type: 'location-on',
+  },
+  {
+    id: '3',
+    title: 'Tech Stack Consultation',
+    date: '28',
+    month: 'Oct',
+    day: 'Mon',
+    time: '09:00 AM - 10:00 AM (1h)',
+    status: 'Confirmed',
+    person: 'David Chen',
+    location: 'Zoom Call',
+    type: 'video-call',
+  }
 ];
 
 export const BookingsScreen = () => {
@@ -14,119 +48,126 @@ export const BookingsScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
-      <View className="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 px-4 py-4 flex-row items-center justify-between border-b border-primary/10">
-        <TouchableOpacity onPress={() => navigation.goBack()} className="size-10 items-center justify-center rounded-full">
-          <Icon name="arrow-back-ios-new" size={20} color="#102216" className="dark:text-slate-100" />
-        </TouchableOpacity>
-        <Text className="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 font-display">My Bookings</Text>
-        <TouchableOpacity className="size-10 items-center justify-center rounded-full"><Icon name="calendar-month" size={20} color="#102216" className="dark:text-slate-100" /></TouchableOpacity>
+      {/* Header */}
+      <View className="flex-row items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+        <View className="flex-row items-center gap-3">
+          <View className="size-10 bg-primary rounded-lg items-center justify-center">
+            <Icon name="hub" size={20} color="#102216" />
+          </View>
+          <Text className="text-slate-900 dark:text-white text-xl font-bold font-display">WorkConnect</Text>
+        </View>
+        <View className="flex-row gap-3">
+          <TouchableOpacity className="size-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800">
+            <Icon name="notifications" size={20} color="#64748b" />
+          </TouchableOpacity>
+          <View className="size-10 rounded-full bg-primary/20 border border-primary/30 items-center justify-center">
+            <Icon name="person" size={20} color="#13ec5b" />
+          </View>
+        </View>
       </View>
 
-      {/* Segmented Control */}
-      <View className="px-4 pb-4 mt-2">
-        <View className="flex-row p-1 bg-slate-200/50 dark:bg-white/5 rounded-xl">
+      <ScrollView className="flex-1 px-6 py-8" showsVerticalScrollIndicator={false}>
+        {/* Hero Section */}
+        <View className="flex-row justify-between items-center mb-8">
+          <View>
+            <Text className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white font-display">My Bookings</Text>
+            <Text className="text-slate-500 dark:text-slate-400 mt-1 font-display">Easily track and manage all your sessions.</Text>
+          </View>
+          <TouchableOpacity className="bg-primary size-12 rounded-xl items-center justify-center shadow-lg shadow-primary/20">
+            <Icon name="add" size={28} color="#102216" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Tabs */}
+        <View className="flex-row border-b border-slate-200 dark:border-slate-800 mb-6">
           <TouchableOpacity
             onPress={() => setActiveTab('upcoming')}
-            className={`flex-1 py-2 rounded-lg items-center ${activeTab === 'upcoming' ? 'bg-white dark:bg-primary shadow-sm' : ''}`}
+            className={`pb-4 mr-8 flex-row items-center gap-2 ${activeTab === 'upcoming' ? 'border-b-2 border-primary' : ''}`}
           >
-            <Text className={`text-sm font-semibold font-display ${activeTab === 'upcoming' ? 'text-slate-900 dark:text-background-dark' : 'text-slate-500'}`}>Upcoming</Text>
+            <Text className={`font-bold text-sm font-display ${activeTab === 'upcoming' ? 'text-slate-900 dark:text-white' : 'text-slate-500'}`}>Upcoming</Text>
+            <View className="bg-primary/20 px-2 py-0.5 rounded-full">
+              <Text className="text-primary text-[10px] font-bold font-display">3</Text>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => setActiveTab('history')}
-            className={`flex-1 py-2 rounded-lg items-center ${activeTab === 'history' ? 'bg-white dark:bg-primary shadow-sm' : ''}`}
+            onPress={() => setActiveTab('past')}
+            className={`pb-4 mr-8 ${activeTab === 'past' ? 'border-b-2 border-primary' : ''}`}
           >
-            <Text className={`text-sm font-semibold font-display ${activeTab === 'history' ? 'text-slate-900 dark:text-background-dark' : 'text-slate-500'}`}>History</Text>
+            <Text className={`font-bold text-sm font-display ${activeTab === 'past' ? 'text-slate-900 dark:text-white' : 'text-slate-500'}`}>Past</Text>
           </TouchableOpacity>
         </View>
-      </View>
 
-      <ScrollView className="flex-1 px-4 py-4" showsVerticalScrollIndicator={false}>
-        <Text className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4 px-1 font-display">Active Bookings</Text>
-        <View className="gap-4">
-          {BOOKINGS.map((booking) => (
-            <View key={booking.id} className="bg-white dark:bg-white/5 rounded-2xl p-4 shadow-sm border border-primary/5">
-              <View className="flex-row justify-between items-start mb-4">
-                <View className="flex-row items-center gap-3">
-                  <View className="size-12 rounded-full bg-slate-100 items-center justify-center overflow-hidden border border-slate-100 dark:border-slate-800">
-                    <Image source={{ uri: booking.img }} className="w-full h-full" />
+        {/* Next 7 Days */}
+        <View className="mb-6">
+          <View className="flex-row items-center gap-2 mb-4">
+            <Icon name="event-note" size={20} color="#13ec5b" />
+            <Text className="text-lg font-bold text-slate-900 dark:text-white font-display">Next 7 Days</Text>
+          </View>
+
+          <View className="gap-4">
+            {BOOKINGS.map(booking => (
+              <View key={booking.id} className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <View className="flex-row gap-5 mb-4">
+                  <View className="bg-slate-100 dark:bg-slate-800 rounded-xl p-3 items-center justify-center min-w-[70px] border border-slate-200 dark:border-slate-700">
+                    <Text className="text-xs font-bold uppercase text-slate-500 font-display">{booking.month}</Text>
+                    <Text className="text-2xl font-black text-slate-900 dark:text-white font-display">{booking.date}</Text>
+                    <Text className="text-xs font-medium text-slate-500 font-display">{booking.day}</Text>
                   </View>
-                  <View>
-                    <Text className="font-bold text-slate-900 dark:text-white font-display">{booking.name}</Text>
-                    <Text className="text-xs font-medium text-slate-500 dark:text-slate-400 font-display">{booking.title}</Text>
+                  <View className="flex-1">
+                    <View className="flex-row justify-between items-start">
+                      <Text className="text-lg font-bold text-slate-900 dark:text-white font-display flex-1 mr-2" numberOfLines={1}>{booking.title}</Text>
+                      <View className={`px-2 py-1 rounded-full border ${booking.status === 'Confirmed' ? 'bg-green-100 border-green-200' : 'bg-amber-100 border-amber-200'}`}>
+                        <Text className={`text-[8px] font-black uppercase font-display ${booking.status === 'Confirmed' ? 'text-green-700' : 'text-amber-700'}`}>{booking.status}</Text>
+                      </View>
+                    </View>
+                    <View className="flex-row items-center gap-1 mt-1">
+                      <Icon name="schedule" size={14} color="#64748b" />
+                      <Text className="text-xs text-slate-500 font-display">{booking.time}</Text>
+                    </View>
+                    <View className="flex-row items-center gap-4 mt-3">
+                      <View className="flex-row items-center gap-1.5">
+                        <View className="size-6 rounded-full bg-primary/20 items-center justify-center">
+                          <Icon name="person" size={14} color="#13ec5b" />
+                        </View>
+                        <Text className="text-xs font-semibold text-slate-700 dark:text-slate-300 font-display">{booking.person}</Text>
+                      </View>
+                      <View className="flex-row items-center gap-1.5">
+                        <View className="size-6 rounded-full bg-primary/20 items-center justify-center">
+                          <Icon name={booking.type} size={14} color="#13ec5b" />
+                        </View>
+                        <Text className="text-xs font-semibold text-slate-700 dark:text-slate-300 font-display">{booking.location}</Text>
+                      </View>
+                    </View>
                   </View>
                 </View>
-                <View className={`px-3 py-1 rounded-full border ${booking.status === 'Confirmed' ? 'bg-primary/20 border-primary/30' : 'bg-slate-100 dark:bg-white/10 border-slate-200 dark:border-white/10'}`}>
-                  <Text className={`text-[10px] font-bold uppercase tracking-wider font-display ${booking.status === 'Confirmed' ? 'text-primary' : 'text-slate-500'}`}>{booking.status}</Text>
+                <View className="flex-row gap-3">
+                  <TouchableOpacity className="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl items-center">
+                    <Text className="font-bold text-sm text-slate-900 dark:text-white font-display">Edit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity className={`flex-1 py-2.5 bg-slate-900 dark:bg-slate-700 rounded-xl items-center ${booking.id === '3' ? 'opacity-50' : ''}`}>
+                    <Text className="font-bold text-sm text-white font-display">Join</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
-
-              <View className="gap-2 mb-4">
-                <View className="flex-row items-center gap-2">
-                  <Icon name="event" size={16} color="#13ec5b" />
-                  <Text className="text-sm text-slate-600 dark:text-slate-300 font-display">{booking.date}</Text>
-                </View>
-                <View className="flex-row items-center gap-2">
-                  <Icon name="schedule" size={16} color="#13ec5b" />
-                  <Text className="text-sm text-slate-600 dark:text-slate-300 font-display">{booking.time}</Text>
-                </View>
-              </View>
-
-              <View className="flex-row gap-2">
-                <TouchableOpacity className="flex-1 py-2.5 bg-primary rounded-xl flex-row items-center justify-center gap-2">
-                  <Icon name="chat-bubble" size={18} color="#102216" />
-                  <Text className="text-background-dark font-bold text-sm text-slate-900 font-display">Message</Text>
-                </TouchableOpacity>
-                <TouchableOpacity className="px-4 py-2.5 border border-slate-200 dark:border-white/10 rounded-xl items-center justify-center">
-                  <Icon name="more-horiz" size={18} color="#64748b" />
-                </TouchableOpacity>
-              </View>
-            </View>
-          ))}
+            ))}
+          </View>
         </View>
 
-        <Text className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4 mt-8 px-1 font-display">Book Again</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 16 }}>
-          {[
-            { name: 'James K.', title: 'Driver', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGF0zrTf4vYBiwnORKycmyRyl_Bnb7uCTyQkcU_eC1dxVnJGsE68NrTVZGjsZx9T_bLLXU0aUZKvDHeHb2Nd1c65w9KZ8hJLcvGYx0iHf8nzjuSMp_8-GuHKTZ6MMShDakJJ0PbIAdZPSF8EoKOk5gwK2SBD2MdQGmXNfVpwmUtlZgLR_PPEeHAziG90Jvz0giIsw3RXFXIPTiwFv5R6HPLgI18gHo32kLNWNEtyH7Lz0KpWjyf3_pMDhtP870G6CQcac067kvhBhy' },
-            { name: 'Sarah L.', title: 'Cook', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXeIvJGIarudubLVXAr7qcq441q6QYMSVUq_WFMLh1J5zRBHAxc9TNNyM6vdLFt0Y7P6O8WqspIuSeEQEaHMuCwAQyoOKmGduD8Rytq1-RxfojVxmOO57E_ImUEcxOtOw40Lx5aOEVPnLhWqhcAl94QQTpjkkZx23EUGjuXxs5y0JZ2MzwE97qsSrvHJm0jfnT2uEXpPWwMmM77UmllhIC0TXMSDd7ZuuOGD0cEjNhF12Y-PvakevgBc6u6sUDMdhoYjpxT6OyQECo' },
-            { name: 'David W.', title: 'Handyman', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBcenHQJv6kTqpvYRpGJhLmpBWE61VPt_0T7yJHGMds1j8YjL_8_5VRlwZLnd5zsL2MEKkE6RqAupCFvnHSNOp8m9EtbpcYajjwG_TkQRMZp6c6mKDfDKpMb9l0-kseY7loFJkOkJciTearWep2OV4P_alUG8aE9ojYJv0pgPXckjHZ3TMbxOWbzdpu3LHSmP6t-ZrixfVVfQSdR-Z2qEWPg3Rph0-S4lCrtDFQWaAkXsNlmVMcam5CdjWQ-1gevpsEMnFSKuN1GpdY' }
-          ].map((item) => (
-            <View key={item.name} className="items-center gap-1 w-20">
-              <View className="size-16 rounded-full bg-slate-200 border border-primary/20 items-center justify-center overflow-hidden">
-                <Image source={{ uri: item.img }} className="w-full h-full" />
-              </View>
-              <Text className="text-xs font-bold text-slate-900 dark:text-slate-100 text-center font-display truncate w-full">{item.name}</Text>
-              <Text className="text-[10px] text-slate-500 font-display">{item.title}</Text>
+        {/* Calendar Summary Placeholder */}
+        <View className="bg-primary/10 rounded-3xl border border-primary/20 p-6 mb-32">
+          <Text className="font-black text-slate-900 dark:text-white mb-4 font-display">Availability Overview</Text>
+          <View className="gap-4">
+            <View className="flex-row justify-between items-center">
+              <Text className="text-sm font-semibold text-slate-600 dark:text-slate-400 font-display">Total Bookings</Text>
+              <Text className="text-lg font-black text-slate-900 dark:text-white font-display">24</Text>
             </View>
-          ))}
-        </ScrollView>
-        <View className="h-24" />
+            <View className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+              <View className="h-full bg-primary w-2/3" />
+            </View>
+            <Text className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter font-display">You're at 67% of your target capacity</Text>
+          </View>
+        </View>
       </ScrollView>
-
-      {/* Navigation Placeholder */}
-      <View className="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-100 dark:border-white/5 px-6 pb-6 pt-3 flex-row justify-between items-center z-50">
-        <TouchableOpacity className="items-center gap-1 group">
-          <Icon name="home" size={24} color="#94a3b8" />
-          <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Explore</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="items-center gap-1 group">
-          <Icon name="calendar-today" size={24} color="#13ec5b" />
-          <Text className="text-[10px] font-bold text-primary uppercase tracking-tighter">Bookings</Text>
-        </TouchableOpacity>
-        <View className="relative -top-6">
-          <TouchableOpacity className="size-14 bg-primary rounded-full shadow-lg shadow-primary/40 items-center justify-center border-4 border-background-light dark:border-background-dark">
-            <Icon name="add" size={30} color="#102216" />
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity className="items-center gap-1 group">
-          <Icon name="chat-bubble" size={24} color="#94a3b8" />
-          <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Messages</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="items-center gap-1 group">
-          <Icon name="person" size={24} color="#94a3b8" />
-          <Text className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Profile</Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
